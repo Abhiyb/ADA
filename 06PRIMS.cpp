@@ -27,21 +27,31 @@ int spanningTree(int V, vector<vector<pair<int, int>>>& adj, vector<int>& vec) {
 }
 
 int main() {
-    int V = 5;
+    int V,E;
+     cout<<"Enter no of vertex and edges";
+     cin>>V>>E;
     vector<vector<pair<int, int>>> adj(V);
+     cout<<"enter edge (u,v,w)"<<endl;
+   for(int i=0;i<E;i++)
+   {
+       int u,v,w;
+       cin>>u>>v>>w;
+       adj[u].push_back({v,w});
+       adj[v].push_back({u,w});
+   }
 
-    adj[0].push_back({1, 2});
-    adj[1].push_back({0, 2});
-    adj[0].push_back({2, 4});
-    adj[2].push_back({0, 4});
-    adj[1].push_back({2, 1});
-    adj[2].push_back({1, 1});
-    adj[1].push_back({3, 7});
-    adj[3].push_back({1, 7});
-    adj[2].push_back({4, 3});
-    adj[4].push_back({2, 3});
-    adj[3].push_back({4, 5});
-    adj[4].push_back({3, 5});
+    // adj[0].push_back({1, 2});
+    // adj[1].push_back({0, 2});
+    // adj[0].push_back({2, 4});
+    // adj[2].push_back({0, 4});
+    // adj[1].push_back({2, 1});
+    // adj[2].push_back({1, 1});
+    // adj[1].push_back({3, 7});
+    // adj[3].push_back({1, 7});
+    // adj[2].push_back({4, 3});
+    // adj[4].push_back({2, 3});
+    // adj[3].push_back({4, 5});
+    // adj[4].push_back({3, 5});
 
     vector<int> vec;
     int minimumCost = spanningTree(V, adj, vec);

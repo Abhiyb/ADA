@@ -3,7 +3,6 @@ using namespace std;
 
 void dfs(vector<bool>& visited, vector<int> adj[], int curr, vector<int>& ans) {
     visited[curr] = true;
-
     for (auto x : adj[curr]) {
         if (!visited[x]) {
             dfs(visited, adj, x, ans);
@@ -24,18 +23,15 @@ int main() {
         cin >> u >> v;
         adj[u].push_back(v);
     }
-
     vector<int> ans;
     for (int i = 0; i < n; i++) {
         if (!visited[i]) {
             dfs(visited, adj, i, ans);
         }
     }
-    
     reverse(ans.begin(), ans.end());
     for (auto x : ans) {
         cout << x << " ";
     }
-    
     return 0;
 }

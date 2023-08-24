@@ -16,8 +16,8 @@ int spanningTree(int V, vector<vector<pair<int, int>>>& adj, vector<int>& vec) {
         sum += wt;
         vec.push_back(node);
         for (auto edge : adj[node]) {
-            int adjnode = edge.first; // Corrected: Use edge.first instead of edge.second
-            int ewt = edge.second;    // Corrected: Use edge.second instead of edge.first
+            int adjnode = edge.first; 
+            int ewt = edge.second;    
             if (!vis[adjnode]) {
                 pq.push({ewt, adjnode});
             }
@@ -32,6 +32,7 @@ int main() {
      cin>>V>>E;
     vector<vector<pair<int, int>>> adj(V);
      cout<<"enter edge (u,v,w)"<<endl;
+    //--------------------take input from user---------------
    for(int i=0;i<E;i++)
    {
        int u,v,w;
@@ -39,7 +40,7 @@ int main() {
        adj[u].push_back({v,w});
        adj[v].push_back({u,w});
    }
-
+//------------------------OR----------------------------
     // adj[0].push_back({1, 2});
     // adj[1].push_back({0, 2});
     // adj[0].push_back({2, 4});

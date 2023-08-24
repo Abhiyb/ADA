@@ -9,20 +9,16 @@ void dfs(vector<vector<int>>& adj, vector<bool>& visited, int node) {
         }
     }
 }
-
 bool isConnected(vector<vector<int>>& adj, int V) {
     vector<bool> visited(V, false);
-
     // Start DFS from the first node
     dfs(adj, visited, 0);
-
     // Check if all nodes were visited
     for (bool status : visited) {
         if (!status) {
             return false;
         }
     }
-
     return true;
 }
 

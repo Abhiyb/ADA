@@ -34,7 +34,7 @@ vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     int V, E;
     cin >> V >> E;
 
-    vector<vector<int>> adj[V]; // Adjacency list representation of graph
+    vector<vector<int>> adj[V];
 
     cout << "Enter the edges and their weights (u v w):\n";
     for (int i = 0; i < E; ++i) {

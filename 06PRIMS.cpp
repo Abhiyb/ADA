@@ -1,45 +1,51 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int spanningTree(int V, vector<vector<int>> adj[],vector<int>&vec)
-    {
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        vector<int>vis(V,0);
-        pq.push({0,0}); int sum=0;
-        while(!pq.empty())
-        {
-            auto it=pq.top();
-            pq.pop();
-            int node=it.second;
-            int wt=it.first;
-            if(vis[node]==1)continue;
-            vis[node]=1;
-            sum+=wt;
-            vec.push_back(node);
-            for(auto it:adj[node])
-            {
-                int adjnode=it[0];
-                int ewt=it[1];
-                if(!vis[adjnode])
-                {
-                    pq.push({ewt,adjnode});
-                }
+
+int spanningTree(int V, vector<vector<pair<int, int>>>& adj, vector<int>& vec) {
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    vector<int> vis(V, 0);
+    pq.push({0, 0});
+    int sum = 0;
+    while (!pq.empty()) {
+        auto it = pq.top();
+        pq.pop();
+        int node = it.second;
+        int wt = it.first;
+        if (vis[node] == 1) continue;
+        vis[node] = 1;
+        sum += wt;
+        vec.push_back(node);
+        for (auto edge : adj[node]) {
+            int adjnode = edge.first; // Corrected: Use edge.first instead of edge.second
+            int ewt = edge.second;    // Corrected: Use edge.second instead of edge.first
+            if (!vis[adjnode]) {
+                pq.push({ewt, adjnode});
             }
-        }return sum;
+        }
     }
+    return sum;
+}
+
 int main() {
-    int V = 4; 
-    vector<vector<int>> adj[V];
-    
-  adj[0].push_back({1,2});
-  adj[1].push_back({0,2});
-  adj[0].push_back({2,5});
-  adj[1].push_back({2,3});
-  adj[1].push_back({3,2});
-  adj[2].push_back({3,4});
-  adj[2].push_back({0,5});
-    vector<int>vec;
-    int minimumCost = spanningTree(V, adj,vec);
-    cout<<minimumCost;
+    int V = 5;
+    vector<vector<pair<int, int>>> adj(V);
+
+    adj[0].push_back({1, 2});
+    adj[1].push_back({0, 2});
+    adj[0].push_back({2, 4});
+    adj[2].push_back({0, 4});
+    adj[1].push_back({2, 1});
+    adj[2].push_back({1, 1});
+    adj[1].push_back({3, 7});
+    adj[3].push_back({1, 7});
+    adj[2].push_back({4, 3});
+    adj[4].push_back({2, 3});
+    adj[3].push_back({4, 5});
+    adj[4].push_back({3, 5});
+
+    vector<int> vec;
+    int minimumCost = spanningTree(V, adj, vec);
+    cout << "Minimum Cost: " << minimumCost << endl;
 
     return 0;
 }

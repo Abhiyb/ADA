@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int spanningTree(int V, vector<vector<pair<int, int>>>& adj, vector<int>& vec) {
+int spanningTree(int V, vector<vector<pair<int, int>>>& adj) {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     vector<int> vis(V, 0);
     pq.push({0, 0});
@@ -14,7 +14,6 @@ int spanningTree(int V, vector<vector<pair<int, int>>>& adj, vector<int>& vec) {
         if (vis[node] == 1) continue;
         vis[node] = 1;
         sum += wt;
-        vec.push_back(node);
         for (auto edge : adj[node]) {
             int adjnode = edge.first; 
             int ewt = edge.second;    
@@ -54,8 +53,8 @@ int main() {
     // adj[3].push_back({4, 5});
     // adj[4].push_back({3, 5});
 
-    vector<int> vec;
-    int minimumCost = spanningTree(V, adj, vec);
+    // vector<int> vec;
+    int minimumCost = spanningTree(V, adj);
     cout << "Minimum Cost: " << minimumCost << endl;
 
     return 0;

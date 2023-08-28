@@ -1,29 +1,21 @@
+
 #include <bits/stdc++.h>
 using namespace std;
-
-void dfs(vector<vector<int>>& adj, vector<bool>& visited, int node) {
-    visited[node] = true;
-    for (int neighbor : adj[node]) {
-        if (!visited[neighbor]) {
-            dfs(adj, visited, neighbor);
-        }
-    }
-}
-bool isConnected(vector<vector<int>>& adj, int V) {
-    vector<bool> visited(V, false);
-    // Start DFS from the first node
-    dfs(adj, visited, 0);
-    // Check if all nodes were visited
-    for (bool status : visited) {
-        if (!status) {
-            return false;
-        }
-    }
-    return true;
+void dfs(vector<vector<int>>&adj,vector<bool>&visited,int start)
+{
+      visited[start]=true;
+      for(auto it:adj[start])
+      {
+          if(!visited[it])
+          {
+              dfs(adj,visited,it);
+          }
+      }
 }
 
-int main() {
-    int V, E;
+int main()
+{
+      int V, E;
     cout << "Enter the number of nodes and edges: ";
     cin >> V >> E;
 
@@ -35,12 +27,14 @@ int main() {
         adj[u].push_back(v);
         adj[v].push_back(u); // Undirected graph
     }
-
-    if (isConnected(adj, V)) {
-        cout << "The graph is connected." << endl;
-    } else {
-        cout << "The graph is not connected." << endl;
+    vector<bool>vis(V,false);
+    dfs(adj,vis,0);
+    for(bool it:vis)
+    {
+        if(!it){
+        cout<<"not connected"; return 0;
+        }
     }
-
+    cout<<"connected";
     return 0;
 }

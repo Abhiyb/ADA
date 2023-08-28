@@ -98,3 +98,22 @@ void merge(int arr[], int l, int m, int r)
         merge(arr,l,mid,r);
         // merge(arr,l,r/2,r);
     }
+int linear_search(int arr[],int n,int key){
+    if(n<0)
+        return -1;
+    if(arr[n]==key)
+        return n;
+    return linear_search(arr,n-1,key);
+}
+
+int binary_search(int arr[],int l,int h,int key){
+    if(l<=h){
+        int mid = (l+h)/2;
+        if(arr[mid] == key)
+            return mid;
+        else if(arr[mid] > key)
+            return binary_search(arr,l,mid-1,key);
+        return binary_search(arr,mid+1,h,key);
+    }
+    return -1;
+}

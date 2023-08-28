@@ -31,7 +31,31 @@ void insertion(int a[],int n)
         a[j+1]=x;
     }
 }
-
+//===============================QUICK SORT=================================
+int partition(int arr[],int l,int h)
+{
+    int piote=arr[h];int i=l-1;
+    for(int j=l;j<h;j++)
+    {
+        if(arr[j]<piote)
+        {
+            i++;swap(arr[i],arr[j]);
+        }
+    }
+    i++;swap(arr[i],arr[h]);
+    return i;
+}
+void quick_sort(int arr[],int l,int h)
+{
+    if(l<h)
+    {
+        int p=partition(arr,l,h);
+        quick_sort(arr,l,p-1);
+        quick_sort(arr,p+1,h);
+        
+    }
+}
+//==============================================================================================================
 int main()
 {
     // cout<<"Hello World";

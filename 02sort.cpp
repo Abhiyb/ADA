@@ -13,9 +13,10 @@ void selection(int a[],int n)
         {
             if(a[j]<a[k])
             {
-                k=j;swap(a[k],a[i]);
+                k=j;
             }
         }
+             swap(a[k],a[i]);
     }
 }
 void insertion(int a[],int n)

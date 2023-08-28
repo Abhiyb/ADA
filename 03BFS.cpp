@@ -1,37 +1,32 @@
+
 #include <bits/stdc++.h>
+
 using namespace std;
-void bfs(vector<int>adj[],int v,int e){
-    vector<int>visited(v,0);
-    queue<int>q;
-    q.push(0);
-    visited[0]=1;
-    while(!q.empty()){
-        int curr=q.front();
-        q.pop();
-        cout<<curr<<" ";
-        for(auto x:adj[curr]){
-            if(!visited[x]){
-                visited[x]=1;
-                q.push(x);
+void bfs(vector<int>adj[],int start,int V)
+{
+    queue<int>q;q.push(0);  vector<bool>visited(V+1,false); visited[start]=true;
+    while(!q.empty())
+    {
+        int node=q.front();q.pop();
+        cout<<node;
+        for(auto it:adj[node])
+        {
+            if(!visited[it])
+            {
+                visited[it]=true; q.push(it);
             }
         }
     }
-    cout<<endl;
 }
 int main()
-{  int v,e;
-   cout<<"enter v,e";
-   cin>>v>>e;
-    vector<int>adj[v];
-    for(int i=0;i<e;i++){
-        cout<<"enter edge";
-        int u,v;
-        cin>>u>>v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
-    vector<int>visited(v,0);
-    bfs(adj,v,e);
-    // dfs(adj,0,visited);
+{
+     int V,E;cin>>V>>E;vector<int>adj[V];
+     for(int i=0;i<E;i++)
+     {
+         int u,v;cin>>u>>v;
+         adj[u].push_back(v);
+         adj[v].push_back(u);
+     }
+     bfs(adj,0,V);
     return 0;
 }
